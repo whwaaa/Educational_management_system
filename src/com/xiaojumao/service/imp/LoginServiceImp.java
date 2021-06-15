@@ -22,9 +22,10 @@ public class LoginServiceImp implements LoginService {
         // 登陆验证
         UsersServiceImp usersServiceImp = new UsersServiceImp();
         Users users = usersServiceImp.loginVerfi(username, password);
-        if(users != null){
+        MySession mySession = new MySession();
+        data.setMySession(mySession);
+        if(users != null) {
             // 验证成功
-            MySession mySession = new MySession();
             mySession.setLogin(true);
             mySession.setUser(users);
             // 通过roleId查询menu权限表
@@ -32,7 +33,6 @@ public class LoginServiceImp implements LoginService {
             Integer roleId = users.getRoleId();
             List<Menu> menuList = menuDaoImp.getMenusByRoleId(roleId);
             mySession.setMenuList(menuList);
-            data.setMySession(mySession);
         }
         return data;
     }

@@ -27,13 +27,15 @@
 					<div class="user_main_box">
 						<ul>
 							<li class="user_main_text">用户名： </li>
-							<li class="user_main_input"><input name="username" maxlength="20" id="TxtUserName" class="txtusernamecssclass"> </li>
+							<li class="user_main_input"><input value="admin" name="username" maxlength="20" id="TxtUserName" class="txtusernamecssclass"> </li>
 						</ul>
 						<ul>
 							<li class="user_main_text">密 码： </li>
-							<li class="user_main_input"><input type="password" name="password" id="TxtPassword" class="txtpasswordcssclass"> </li>
+							<li class="user_main_input"><input value="123" type="password" name="password" id="TxtPassword" class="txtpasswordcssclass"> </li>
 						</ul>
-						
+<%--						<p style="text-align: center;">超级管理员:admin</p>--%>
+<%--						<p style="text-align: center;">密码:123</p>--%>
+
 						
 					</div>
 				</li>
