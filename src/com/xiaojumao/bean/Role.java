@@ -1,5 +1,7 @@
 package com.xiaojumao.bean;
 
+import java.util.List;
+
 /**
  * @Author: whw
  * @Description:

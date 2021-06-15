@@ -17,6 +17,7 @@
             }
         }
 
+        var url = "";
 		function del(){
             checkbox();
             if(url != ""){
@@ -25,22 +26,35 @@
                 }
             }
 		}
-
-		var url;
-		function checkbox(){
-            url = "";
-            var canshu = "userIds=";
-            $("input[name='checkboxs']").each(function () {
-                if($(this).is(':checked')) {
-                    canshu += $(this).val()+",";
-
+        function checkbox(){
+            var userIds = "";
+            var flag = true;
+            $(".itembox").each(function(){
+                if($(this).is(":checked")){
+                    userIds += $(this).val()+",";
+                }else{
+                    flag = false;
                 }
             })
-            if(canshu != "canshu"){
-                url = "/power/user/Delete?pageIndex=" + ${data.pageInfo.pageIndex} + "&" + canshu;
-            }
+            $(".prefbox").prop("checked",flag);
+            url = "/power/user/Delete?pageIndex=" + ${data.pageInfo.pageIndex} + "&userIds=" + userIds;
             console.log(url);
         }
+
+        $(document).ready(function (){
+            $(".prefbox").on("click", function(){
+                if($(this).is(":checked")){
+                    $(".itembox").prop("checked",true);
+                }else{
+                    $(this).prop("checked",false);
+                    $(".itembox").prop("checked",false);
+                }
+                checkbox();
+            })
+            $(".itembox").on("click", function(){
+                checkbox();
+            })
+        })
 
     </script>
 
@@ -66,8 +80,8 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr style="height: 25px;" align="center">
-                    
-                    <th  width="8%">
+                    <th><input class="prefbox" type="checkbox"/></th>
+<%--                    <th  width="8%">--%>
 
 					</th>
 					<th scope="col" width="15%">
@@ -90,7 +104,7 @@
 
                <c:forEach items="${data.usersList}" var="user">
                    <tr align="center">
-                       <th><input name="checkboxs" type="checkbox" value="${user.userId}" onclick="checkbox()"/></th>
+                       <th><input class="itembox" name="checkboxs" type="checkbox" value="${user.userId}"/></th>
                        <td>
                            ${user.userId}
                        </td>
@@ -108,7 +122,8 @@
 
                        <td>&nbsp;
                            <a href="Editor?userId=${user.userId}&pageIndex=${data.pageInfo.pageIndex}">修改</a>
-                           <a href="Delete?userId=${user.userId}" name="${user.userId}" onclick="delone($(this));return false" class="tablelink"> 删除</a>
+<%--                           <a href="Delete?userId=${user.userId}" name="${user.userId}" onclick="delone($(this));return false" class="tablelink"> 删除</a>--%>
+                           <a href="javascript:void(0);" name="${user.userId}" onclick="delone($(this));return false" class="tablelink"> 删除</a>
                        </td>
                    </tr>
                </c:forEach>
@@ -151,7 +166,7 @@
          function page_searchIndex() {
              var searchText = document.getElementById('john_Page_Search');
              var searchIndex = searchText != null && searchText.value != '' ? parseInt(searchText.value) : 0;
-             if(searchIndex > 0 && searchIndex <= ${data.pageInfo.indexTotal}) {
+             if(searchIndex > 0 && searchIndex <= ${data.pageInfo.pageTotal}) {
                  window.location="UserList?pageIndex=" + searchIndex;
              }else{
                  alert('需要跳转的页码不能超出范围！');

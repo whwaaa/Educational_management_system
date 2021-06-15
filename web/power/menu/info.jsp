@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -5,16 +6,15 @@
 	学生信息管理平台
 </title>
 	<link href="../../css/StudentStyle.css" rel="stylesheet" type="text/css" />
-	<link href="../../Script/jBox/Skins/Blue/jbox.css" rel="stylesheet" type="text/css" />
 	<link href="../../css/ks.css" rel="stylesheet" type="text/css" />
 	<link href="../../css/mine.css" type="text/css" rel="stylesheet">
-    <script src="../../Script/jBox/jquery-1.4.2.min.js" type="text/javascript"></script>
-    <script src="../../Script/jBox/jquery.jBox-2.3.min.js" type="text/javascript"></script>
-    <script src="../../Script/jBox/i18n/jquery.jBox-zh-CN.js" type="text/javascript"></script>
-    <script src="../../Script/Common.js" type="text/javascript"></script>
-    <script src="../../Script/Data.js" type="text/javascript"></script>
-    
-    
+    <script src="../../js/jquery-1.11.0.js"></script>
+    <c:set var="menu" value="${data.menuList[0]}" />
+
+    <script>
+
+    </script>
+
 </head>
 <body>
 
@@ -33,7 +33,7 @@
                 <tr  width="120px;">
                     <td width="120px">资源菜单名：<span style="color:red">*</span>：</td>
                     <td>
-						<input type="text"  name="f_goods_image" value="权限管理" />
+						<input type="text"  name="menuName" value="${menu.menuName}" />
 					</td>
                 </tr>
 
@@ -41,8 +41,9 @@
                     <td>上级菜单：<span style="color:red">*</span>：</td>
                     <td>
                     	<select>
-                        	<option value="0">顶级菜单</option>
-                            <option value="1">权限管理</option>
+                            <c:forEach var="upmenu" items="${menu.upMenuList}">
+                                <option ${menu.upMenuId==upmenu.menuId?"selected":""} value="${upmenu.menuId}">${upmenu.menuName}</option>
+                            </c:forEach>
                             
                         </select>
 					</td>
@@ -51,14 +52,14 @@
                 <tr  width="120px;">
                     <td>菜单路径<span style="color:red">*</span>：</td>
                     <td>
-						<input type="text"  name="f_goods_image" value="/info.jsp" />
+						<input type="text"  name="url" value="${menu.url}" />
 					</td>
                 </tr>
                 
                 <tr>
                     <td>启用状态<span style="color:red">*</span>：</td>
                     <td>
-                        <input type="radio" name="state" checked value="1" />启用 <input type="radio" name="state" value="0"/>禁用
+                        <input type="radio" name="state" ${menu.state==1?"checked":""} value="1" />启用 <input ${menu.state==0?"checked":""} type="radio" name="state" value="0"/>禁用
                     </td>
                 </tr>
 
@@ -66,7 +67,7 @@
                 <tr  width="120px;">
                     <td>备注<span style="color:red">*</span>：</td>
                     <td>
-						<textarea rows="5" cols="20"></textarea>
+						<textarea rows="5" cols="20">${menu.desc}</textarea>
 					</td>
                 </tr>
 				

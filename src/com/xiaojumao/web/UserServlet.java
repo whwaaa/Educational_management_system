@@ -163,7 +163,6 @@ public class UserServlet extends HttpServlet {
         UsersServiceImp usersServiceImp = new UsersServiceImp();
         String res = usersServiceImp.checkCardId(cardId);
         // 3.ajax传入前端
-        req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=utf-8;");
         resp.getWriter().print(res);
     }
@@ -191,7 +190,7 @@ public class UserServlet extends HttpServlet {
         UsersServiceImp usersServiceImp = new UsersServiceImp();
         usersServiceImp.editSave(users);
         // 3.跳转页面
-        resp.setContentType("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         writer.println("<script>window.location.href='/power/user/UserList?pageIndex=" + pageIndex + "';</script>");
     }
@@ -208,7 +207,7 @@ public class UserServlet extends HttpServlet {
         UsersServiceImp usersServiceImp = new UsersServiceImp();
         usersServiceImp.delete(userIds);
         // 3.跳转页面
-        resp.setContentType("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         writer.println("<script>window.location.href='/power/user/UserList?pageIndex=" + pageIndex + "';</script>");
     }
@@ -247,7 +246,7 @@ public class UserServlet extends HttpServlet {
         UsersServiceImp usersServiceImp = new UsersServiceImp();
         Data data = usersServiceImp.addSave(users);
         // 3.跳转页面
-        resp.setContentType("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         writer.println("<script>window.location.href='/power/user/UserList?pageIndex=" + data.getPageInfo().getPageTotal() + "';</script>");
     }

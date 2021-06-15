@@ -13,6 +13,84 @@
         function suresubmit(){
             $("#submit").submit();
         }
+
+        var checkLoginNameFlag = false;
+        var checkEmailFlag = false;
+        var checkPhoneFlag = false;
+        var checkCardIdFlag = false;
+        function checkLoginName(){
+            var loginName = $("#loginName").val();
+            $.post("CheckLoginName", {"loginName":loginName}, function (res) {
+                if(res == "ok"){
+                    checkLoginNameFlag = true;
+                    $("#loginNameErr").css("display","none");
+                }else{
+                    checkLoginNameFlag = false;
+                    $("#loginNameErr").css("display","block");
+                }
+            })
+        }
+
+
+        function checkEmail(){
+            var email = $("#email").val();
+            $.post("CheckEmail", {"email":email}, function (res) {
+                if(res == "ok"){
+                    checkEmailFlag = true;
+                    $("#emailErr").css("display","none");
+                }else{
+                    checkEmailFlag = false;
+                    $("#emailErr").css("display","block");
+                }
+            })
+        }
+
+        function checkPhone(){
+            var phone = $("#phone").val();
+            $.post("CheckPhone", {"phone":phone}, function (res) {
+                if(res == "ok"){
+                    checkPhoneFlag = true;
+                    $("#phoneErr").css("display","none");
+                }else{
+                    checkPhoneFlag = false;
+                    $("#phoneErr").css("display","block");
+                }
+            })
+        }
+
+        function checkCardId(){
+            var cardId = $("#cardId").val();
+            $.post("CheckCardId", {"cardId":cardId}, function (res) {
+                if(res == "ok"){
+                    checkCardIdFlag = true;
+                    $("#cardIdErr").css("display","none");
+                }else{
+                    checkCardIdFlag = false;
+                    $("#cardIdErr").css("display","block");
+                }
+            })
+        }
+
+        function checkAll(){
+            $.ajaxSettings.async = false;
+            if(!checkLoginNameFlag){
+                checkLoginName();
+            }
+            if(!checkEmailFlag){
+                checkEmail();
+            }
+            if(!checkPhoneFlag){
+                checkPhone();
+            }
+            if(!checkCardIdFlag){
+                checkCardId();
+            }
+            $.ajaxSettings.async = true;
+            if(checkLoginNameFlag && checkEmailFlag && checkPhoneFlag && checkCardIdFlag){
+                $("#submit").submit();
+            }
+        }
+
     </script>
     
 </head>

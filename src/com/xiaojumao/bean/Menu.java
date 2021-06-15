@@ -1,5 +1,7 @@
 package com.xiaojumao.bean;
 
+import java.util.List;
+
 /**
  * @Author: whw
  * @Description:
@@ -13,6 +15,33 @@ public class Menu {
     private Integer state;
     private String desc;
     private String url;
+    private boolean use;
+    private String upMenuName;
+    private List<Menu> upMenuList;
+
+    public List<Menu> getUpMenuList() {
+        return upMenuList;
+    }
+
+    public void setUpMenuList(List<Menu> upMenuList) {
+        this.upMenuList = upMenuList;
+    }
+
+    public String getUpMenuName() {
+        return upMenuName;
+    }
+
+    public void setUpMenuName(String upMenuName) {
+        this.upMenuName = upMenuName;
+    }
+
+    public boolean isUse() {
+        return use;
+    }
+
+    public void setUse(boolean use) {
+        this.use = use;
+    }
 
     public Integer getMenuId() {
         return menuId;
@@ -64,12 +93,15 @@ public class Menu {
 
     public Menu(){}
 
-    public Menu(Integer menuId, String menuName, Integer upMenuId, Integer state, String desc, String url) {
+    public Menu(Integer menuId, String menuName, Integer upMenuId, Integer state, String desc, String url, boolean use, String upMenuName, List<Menu> upMenuList) {
         this.menuId = menuId;
         this.menuName = menuName;
         this.upMenuId = upMenuId;
         this.state = state;
         this.desc = desc;
         this.url = url;
+        this.use = use;
+        this.upMenuName = upMenuName;
+        this.upMenuList = upMenuList;
     }
 }

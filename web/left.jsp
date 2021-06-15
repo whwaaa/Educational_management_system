@@ -87,7 +87,7 @@
 								<img height=9 src="./img/menu_icon.gif" width=9>
 							</td>
                             <td>
-								<a class=menuchild  href="power/role/list.jsp"  target="right">角色管理</a>
+								<a class=menuchild  href="/power/role/RoleList"  target="right">角色管理</a>
 							</td>
 						</tr>
                         
@@ -96,7 +96,7 @@
 								<img height=9  src="./img/menu_icon.gif" width=9>
 							</td>
                             <td>
-								<a class=menuchild  href="power/menu/list.jsp"   target="right">菜单管理</a>
+								<a class=menuchild  href="power/menu/MenuList"   target="right">菜单管理</a>
 							</td>
 						</tr>				
                         <tr height=4>
