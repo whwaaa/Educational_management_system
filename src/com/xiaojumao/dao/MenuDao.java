@@ -65,6 +65,12 @@ public interface MenuDao {
      * 通过menuId删除menu
      */
     public Integer deleteByMenuId(Integer menuId);
+
+    /**
+     * 通过MenuId修改menu_State
+     */
+    public Integer updateStateByMenuId(Integer state, Integer menuId);
+
 }
 
 

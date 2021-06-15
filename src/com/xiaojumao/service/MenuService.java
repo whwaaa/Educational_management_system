@@ -28,4 +28,9 @@ public interface MenuService {
      * 删除数据
      */
     public Data delete(String pageIndex, String menuIds);
+
+    /**
+     * 修改state
+     */
+    public Data chageState(String pageIndex, String state, String menuId);
 }

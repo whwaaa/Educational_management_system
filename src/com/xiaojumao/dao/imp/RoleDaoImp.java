@@ -204,6 +204,22 @@ public class RoleDaoImp extends DBUtils implements RoleDao{
         return null;
     }
 
+    @Override
+    public Integer updateStateByRoleId(Integer roleState, Integer roleId) {
+        String sql = "UPDATE `role` SET `rolestate`=? WHERE `roleid`=?";
+        List list = new ArrayList();
+        list.add(roleState);
+        list.add(roleId);
+        try {
+            int update = update(sql, list);
+            return update;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return null;
+    }
 }
 
 

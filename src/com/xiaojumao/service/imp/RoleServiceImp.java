@@ -12,6 +12,7 @@ import com.xiaojumao.service.RoleService;
 import com.xiaojumao.utils.PageInfo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -125,5 +126,15 @@ public class RoleServiceImp implements RoleService {
         }
     }
 
-
+    @Override
+    public Data chageState(String pageIndex, String roleState, String roleId) {
+        PageInfo pageInfo = new PageInfo();
+        if(roleId != null && !roleId.equals("")){
+            roleImp.updateStateByRoleId(Integer.parseInt(roleState), Integer.parseInt(roleId));
+            pageInfo.setPageIndex(Integer.parseInt(pageIndex));
+        }
+        Data data = new Data();
+        data.setPageInfo(pageInfo);
+        return data;
+    }
 }

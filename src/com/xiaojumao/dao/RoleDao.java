@@ -55,6 +55,11 @@ public interface RoleDao {
      * 通过RoleNmae查询role
      */
     public Role getRoleByRoleName(String roleName);
+
+    /**
+     *  通过RoleId修改role_State
+     */
+    public Integer updateStateByRoleId(Integer roleState, Integer roleId);
 }
 
 

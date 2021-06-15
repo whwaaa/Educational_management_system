@@ -254,4 +254,21 @@ public class MenuDaoImp extends DBUtils implements MenuDao{
         }
         return null;
     }
+
+    @Override
+    public Integer updateStateByMenuId(Integer state, Integer menuId) {
+        String sql = "UPDATE `menu` SET `state`=? WHERE `menuid`=?";
+        List list = new ArrayList();
+        list.add(state);
+        list.add(menuId);
+        try {
+            int update = update(sql, list);
+            return update;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return null;
+    }
 }

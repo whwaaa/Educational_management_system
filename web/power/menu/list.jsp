@@ -121,7 +121,7 @@
                         </td>
 
                         <td>&nbsp;
-                            <a href="javascript:alert('操作成功！');"> ${menu.state==0?"启用":"禁用"}</a>
+                            <a href="ChageState?menuId=${menu.menuId}&state=${menu.state==1?0:1}&pageIndex=${data.pageInfo.pageIndex}"> ${menu.state==0?"启用":"禁用"}</a>
                             <a href="Query?menuId=${menu.menuId}&pageIndex=${data.pageInfo.pageIndex}&url=info.jsp">详情</a>
                             <a href="Query?menuId=${menu.menuId}&pageIndex=${data.pageInfo.pageIndex}&url=edit.jsp">修改</a>
                             <a href="javascript:void(0);" onclick="delone(${menu.menuId});return false"> 删除</a>

@@ -1,7 +1,9 @@
 package com.xiaojumao.web;
 
 import com.xiaojumao.bean.Data;
+import com.xiaojumao.service.MenuService;
 import com.xiaojumao.service.RoleService;
+import com.xiaojumao.service.imp.MenuServiceImp;
 import com.xiaojumao.service.imp.RoleServiceImp;
 
 import javax.servlet.ServletException;
@@ -21,7 +23,8 @@ import java.io.PrintWriter;
 @WebServlet(urlPatterns = {"/power/role/RoleList",
         "/power/role/Query",
         "/power/role/Save",
-        "/power/role/Delete"
+        "/power/role/Delete",
+        "/power/role/ChageState"
 })
 public class RoleServlet extends HttpServlet {
     @Override
@@ -34,7 +37,11 @@ public class RoleServlet extends HttpServlet {
             save(req, resp);
         }else if(req.getRequestURI().endsWith("Delete")){
             delete(req, resp);
+        }else if(req.getRequestURI().endsWith("ChageState")){
+            chageState(req, resp);
         }
+
+
 
     }
 
@@ -101,5 +108,22 @@ public class RoleServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         writer.println("<script>alert('操作成功')window.location.href='/power/role/RoleList?pageIndex=" + pageIndex + "';</script>");
+    }
+
+    /**
+     * 修改state
+     */
+    protected void chageState(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1.获取当前页信息
+        String pageIndex = req.getParameter("pageIndex");
+        String roleState = req.getParameter("roleState");
+        String roleId = req.getParameter("roleId");
+        // 2.调用Service层方法
+        RoleService roleService = new RoleServiceImp();
+        Data data = roleService.chageState(pageIndex, roleState, roleId);
+        // 3.跳转
+        resp.setContentType("text/html;charset=UTF-8");
+        PrintWriter writer = resp.getWriter();
+        writer.println("<script>window.location.href='/power/role/RoleList?pageIndex=" + data.getPageInfo().getPageIndex() + "';</script>");
     }
 }

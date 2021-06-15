@@ -21,7 +21,8 @@ import java.io.PrintWriter;
 @WebServlet(urlPatterns = {"/power/menu/MenuList",
         "/power/menu/Query",
         "/power/menu/Save",
-        "/power/menu/Delete"})
+        "/power/menu/Delete",
+        "/power/menu/ChageState"})
 public class MenuServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,6 +34,8 @@ public class MenuServlet extends HttpServlet {
             save(req, resp);
         }else if(req.getRequestURI().endsWith("Delete")){
             delete(req, resp);
+        }else if(req.getRequestURI().endsWith("ChageState")){
+            chageState(req, resp);
         }
     }
 
@@ -104,6 +107,24 @@ public class MenuServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         writer.println("<script>alert(\"操作成功\");window.location.href='/power/menu/MenuList?pageIndex=" + data.getPageInfo().getPageIndex() + "';</script>");
     }
+
+    /**
+     * 修改state
+     */
+    protected void chageState(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1.获取当前页信息
+        String pageIndex = req.getParameter("pageIndex");
+        String state = req.getParameter("state");
+        String menuId = req.getParameter("menuId");
+        // 2.调用Service层方法
+        MenuService menuService = new MenuServiceImp();
+        Data data = menuService.chageState(pageIndex, state, menuId);
+        // 3.跳转
+        resp.setContentType("text/html;charset=UTF-8");
+        PrintWriter writer = resp.getWriter();
+        writer.println("<script>window.location.href='/power/menu/MenuList?pageIndex=" + data.getPageInfo().getPageIndex() + "';</script>");
+    }
+
 
 }
 

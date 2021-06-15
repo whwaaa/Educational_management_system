@@ -121,4 +121,34 @@ public class MenuServiceImp implements MenuService {
         data.setPageInfo(pageInfo);
         return data;
     }
+
+    @Override
+    public Data chageState(String pageIndex, String state, String menuId) {
+        PageInfo pageInfo = new PageInfo();
+        if(menuId != null && !menuId.equals("")){
+            menuDao.updateStateByMenuId(Integer.parseInt(state), Integer.parseInt(menuId));
+            pageInfo.setPageIndex(Integer.parseInt(pageIndex));
+        }
+        Data data = new Data();
+        data.setPageInfo(pageInfo);
+        return data;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

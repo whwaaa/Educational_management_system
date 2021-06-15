@@ -34,4 +34,9 @@ public interface RoleService {
      */
     public void deleteByRoleId(String roleId);
 
+    /**
+     *  修改state
+     */
+    public Data chageState(String pageIndex, String roleState, String roleId);
+
 }
