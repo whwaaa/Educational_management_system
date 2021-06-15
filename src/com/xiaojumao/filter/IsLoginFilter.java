@@ -1,6 +1,7 @@
 package com.xiaojumao.filter;
 
 
+import com.xiaojumao.bean.MySession;
 import com.xiaojumao.bean.Users;
 
 import javax.servlet.*;
@@ -24,8 +25,8 @@ public class IsLoginFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        Users u1 = (Users)request.getSession().getAttribute("u1");
-        if(u1 == null){
+        MySession mySession = (MySession)request.getSession().getAttribute("mySession");
+        if(mySession == null){
             // 未登录,跳转登录界面
             response.sendRedirect("/login.jsp");
         }

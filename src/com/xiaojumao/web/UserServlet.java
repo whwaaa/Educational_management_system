@@ -192,7 +192,7 @@ public class UserServlet extends HttpServlet {
         // 3.跳转页面
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        writer.println("<script>window.location.href='/power/user/UserList?pageIndex=" + pageIndex + "';</script>");
+        writer.println("<script>alert('操作成功');window.location.href='/power/user/UserList?pageIndex=" + pageIndex + "';</script>");
     }
 
 
@@ -209,7 +209,7 @@ public class UserServlet extends HttpServlet {
         // 3.跳转页面
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        writer.println("<script>window.location.href='/power/user/UserList?pageIndex=" + pageIndex + "';</script>");
+        writer.println("<script>alert('操作成功');window.location.href='/power/user/UserList?pageIndex=" + pageIndex + "';</script>");
     }
 
 
@@ -248,6 +248,6 @@ public class UserServlet extends HttpServlet {
         // 3.跳转页面
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        writer.println("<script>window.location.href='/power/user/UserList?pageIndex=" + data.getPageInfo().getPageTotal() + "';</script>");
+        writer.println("<script>alert('操作成功');window.location.href='/power/user/UserList?pageIndex=" + data.getPageInfo().getPageTotal() + "';</script>");
     }
 }

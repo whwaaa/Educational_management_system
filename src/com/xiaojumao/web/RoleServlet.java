@@ -84,7 +84,7 @@ public class RoleServlet extends HttpServlet {
         // 3.跳转页面
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        writer.println("<script>window.location.href='/power/role/RoleList?pageIndex=" + data.getPageInfo().getPageIndex() + "';</script>");
+        writer.println("<script>alert('操作成功');window.location.href='/power/role/RoleList?pageIndex=" + data.getPageInfo().getPageIndex() + "';</script>");
     }
 
     /**
@@ -100,6 +100,6 @@ public class RoleServlet extends HttpServlet {
         // 3.跳转页面
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        writer.println("<script>window.location.href='/power/role/RoleList?pageIndex=" + pageIndex + "';</script>");
+        writer.println("<script>alert('操作成功')window.location.href='/power/role/RoleList?pageIndex=" + pageIndex + "';</script>");
     }
 }

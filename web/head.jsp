@@ -20,8 +20,8 @@
                     align="right">
 
                     <c:choose>
-                        <c:when test="${u1!=null}">
-                            当前用户：${u1.realName} &nbsp;&nbsp;
+                        <c:when test="${mySession!=null}">
+                            当前用户：${mySession.user.realName} &nbsp;&nbsp;
                             <a style="color: white" href="/OutServlet">登出</a>
                         </c:when>
                         <c:otherwise>

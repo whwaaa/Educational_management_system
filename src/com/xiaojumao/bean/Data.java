@@ -11,13 +11,22 @@ import java.util.List;
  * @Modified By:
  */
 public class Data {
-    List<Grade> gradeList;
-    List<Menu> menuList;
-    List<Middle> middleList;
-    List<Role> roleList;
-    List<Student> studentList;
-    List<Users> usersList;
-    PageInfo pageInfo;
+    private List<Grade> gradeList;
+    private List<Menu> menuList;
+    private List<Middle> middleList;
+    private List<Role> roleList;
+    private List<Student> studentList;
+    private List<Users> usersList;
+    private PageInfo pageInfo;
+    private MySession mySession;
+
+    public MySession getMySession() {
+        return mySession;
+    }
+
+    public void setMySession(MySession mySession) {
+        this.mySession = mySession;
+    }
 
     public PageInfo getPageInfo() {
         return pageInfo;
@@ -75,7 +84,7 @@ public class Data {
         this.usersList = usersList;
     }
 
-    public Data(List<Grade> gradeList, List<Menu> menuList, List<Middle> middleList, List<Role> roleList, List<Student> studentList, List<Users> usersList, PageInfo pageInfo) {
+    public Data(List<Grade> gradeList, List<Menu> menuList, List<Middle> middleList, List<Role> roleList, List<Student> studentList, List<Users> usersList, PageInfo pageInfo, MySession mySession) {
         this.gradeList = gradeList;
         this.menuList = menuList;
         this.middleList = middleList;
@@ -83,6 +92,7 @@ public class Data {
         this.studentList = studentList;
         this.usersList = usersList;
         this.pageInfo = pageInfo;
+        this.mySession = mySession;
     }
 
     public Data() {

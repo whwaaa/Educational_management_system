@@ -1,6 +1,9 @@
 package com.xiaojumao.web;
 
+import com.xiaojumao.bean.Data;
 import com.xiaojumao.bean.Users;
+import com.xiaojumao.service.LoginService;
+import com.xiaojumao.service.imp.LoginServiceImp;
 import com.xiaojumao.service.imp.UsersServiceImp;
 
 import javax.servlet.ServletException;
@@ -25,14 +28,14 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         // 2.调取service层方法
-        UsersServiceImp usersServiceImp = new UsersServiceImp();
-        Users users = usersServiceImp.loginVerfi(username, password);
+        LoginService loginService = new LoginServiceImp();
+        Data data = loginService.login(username, password);
 
         // 3.跳转页面
         resp.setContentType("text/html; charset=utf-8;");
-        if(users != null){
-            // 验证成功
-            req.getSession().setAttribute("u1", users);
+        if(data.getMySession().isLogin()){
+            // 获取角色信息
+            req.getSession().setAttribute("mySession", data.getMySession());
             resp.sendRedirect("index.jsp");
         }else{
             // 验证失败

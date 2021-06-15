@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -31,78 +32,77 @@
 						</tr>
 					</table>
                    
-             
-					<table cellspacing=0 cellpadding=0 width=150 border=0>
-                        <tr height=22>
-                            <td style="padding-left: 30px" background=./img/menu_bt.jpg>
-							   <a     class=menuparent onclick=expand(2)    href="javascript:void(0);">教务中心</a>
-							 </td>
-						</tr>
-                        <tr height=4>
-                            <td></td>
-						</tr>
-					</table>		
-							
-					<table id=child2 style="display: none" cellspacing=0 cellpadding=0  width=150 border=0>
-                       
-						<tr height=20>
-                            <td align=middle width=30>
-								<img height=9  src="./img/menu_icon.gif" width=9>
-							</td>
-                            <td>
-								<a class=menuchild  href="Educational/student/StuList"   target="right">学生管理</a>
-							</td>
-						</tr>
-						
-						
-                      
-                        <tr height=4>
-                            <td colspan=2></td>
-						</tr>
-					</table>
+
+					<c:forEach var="menu" items="${mySession.menuList}">
+						<c:if test="${menu.upMenuId==0}">
+							<table cellspacing=0 cellpadding=0 width=150 border=0>
+								<tr height=22>
+									<td style="padding-left: 30px" background=./img/menu_bt.jpg>
+										<a     class=menuparent onclick=expand(${menu.menuId})    href="javascript:void(0);">${menu.menuName}</a>
+									</td>
+								</tr>
+							</table>
+							<table id=child${menu.menuId} style="display: none" cellspacing=0 cellpadding=0  width=150 border=0>
+							<c:forEach var="menu2" items="${mySession.menuList}">
+								<c:if test="${menu2.upMenuId==menu.menuId}">
+										<tr height=20>
+											<td align=middle width=30>
+												<img height=9  src="./img/menu_icon.gif" width=9>
+											</td>
+											<td>
+												<a class=menuchild  href="${menu2.url}"   target="right">${menu2.menuName}</a>
+											</td>
+										</tr>
+								</c:if>
+							</c:forEach>
+							</table>
+						</c:if>
+					</c:forEach>
+
+
 					
-					<table cellspacing=0 cellpadding=0 width=150 border=0>
-                        <tr height=22>
-                            <td style="padding-left: 30px" background=./img/menu_bt.jpg>
-							   <a     class=menuparent onclick=expand(7)    href="javascript:void(0);">权限管理</a>
-							 </td>
-						</tr>
-                        <tr height=4>
-                            <td></td>
-						</tr>
-					</table>		
-							
-					<table id=child7 style="display: none" cellspacing=0 cellpadding=0  width=150 border=0>
-                    	<tr height=20>
-                            <td align=middle width=30>
-								<img height=9 src="./img/menu_icon.gif" width=9>
-							</td>
-                            <td>
-								<a class=menuchild  href="power/user/UserList"  target="right">用户管理</a>
-							</td>
-						</tr>
-                        
-                        <tr height=20>
-                            <td align=middle width=30>
-								<img height=9 src="./img/menu_icon.gif" width=9>
-							</td>
-                            <td>
-								<a class=menuchild  href="/power/role/RoleList"  target="right">角色管理</a>
-							</td>
-						</tr>
-                        
-                        <tr height=20>
-                            <td align=middle width=30>
-								<img height=9  src="./img/menu_icon.gif" width=9>
-							</td>
-                            <td>
-								<a class=menuchild  href="power/menu/MenuList"   target="right">菜单管理</a>
-							</td>
-						</tr>				
-                        <tr height=4>
-                            <td colspan=2></td>
-						</tr>
-					</table>			
+<%--					<table cellspacing=0 cellpadding=0 width=150 border=0>--%>
+<%--                        <tr height=22>--%>
+<%--                            <td style="padding-left: 30px" background=./img/menu_bt.jpg>--%>
+<%--							   <a     class=menuparent onclick=expand(7)    href="javascript:void(0);">权限管理</a>--%>
+<%--							 </td>--%>
+<%--						</tr>--%>
+<%--                        <tr height=4>--%>
+<%--                            <td></td>--%>
+<%--						</tr>--%>
+<%--					</table>		--%>
+<%--							--%>
+<%--					<table id=child7 style="display: none" cellspacing=0 cellpadding=0  width=150 border=0>--%>
+<%--                    	<tr height=20>--%>
+<%--                            <td align=middle width=30>--%>
+<%--								<img height=9 src="./img/menu_icon.gif" width=9>--%>
+<%--							</td>--%>
+<%--                            <td>--%>
+<%--								<a class=menuchild  href="power/user/UserList"  target="right">用户管理</a>--%>
+<%--							</td>--%>
+<%--						</tr>--%>
+
+<%--                        <tr height=20>--%>
+<%--                            <td align=middle width=30>--%>
+<%--								<img height=9 src="./img/menu_icon.gif" width=9>--%>
+<%--							</td>--%>
+<%--                            <td>--%>
+<%--								<a class=menuchild  href="/power/role/RoleList"  target="right">角色管理</a>--%>
+<%--							</td>--%>
+<%--						</tr>--%>
+
+<%--                        <tr height=20>--%>
+<%--                            <td align=middle width=30>--%>
+<%--								<img height=9  src="./img/menu_icon.gif" width=9>--%>
+<%--							</td>--%>
+<%--                            <td>--%>
+<%--								<a class=menuchild  href="power/menu/MenuList"   target="right">菜单管理</a>--%>
+<%--							</td>--%>
+<%--						</tr>--%>
+<%--                        <tr height=4>--%>
+<%--                            <td colspan=2></td>--%>
+<%--						</tr>--%>
+<%--					</table>--%>
 									
 				</td>
                 <td width=1 bgcolor=#d1e6f7></td>
