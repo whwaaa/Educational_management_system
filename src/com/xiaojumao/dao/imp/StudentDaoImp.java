@@ -30,7 +30,7 @@ public class StudentDaoImp extends DBUtils implements StudentDao {
         }
         if (stuNo!=null && stuNo!="") {
             sql.append(" AND stuno=? ");
-            list.add(stuNo);
+            list.add("%" + stuNo + "%");
         }
         if(sex != -1){
             sql.append(" AND sex=? ");
@@ -61,8 +61,8 @@ public class StudentDaoImp extends DBUtils implements StudentDao {
             list.add("%" + stuName + "%");
         }
         if (stuNo!=null && stuNo!="") {
-            sql.append(" AND stuno=? ");
-            list.add(stuNo);
+            sql.append(" AND stuno LIKE ? ");
+            list.add("%" + stuNo + "%");
         }
         if(sex != -1){
             sql.append(" AND sex=? ");

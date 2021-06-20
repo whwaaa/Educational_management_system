@@ -32,10 +32,10 @@
 	<div class="cztable">
 		<div>
 				<form action="StuList" method="post">
+					学生学号:
+					<input type="text" name="stuNo" value="${pageInfo.stuNo}" />
                     学生名称: 
 					<input type="text" name="stuName" value="${pageInfo.stuName}" />
-                     学生学号: 
-					<input type="text" name="stuNo" value="${pageInfo.stuNo}" />
 					性别: 
 					<select name="sex">
 							<option value="-1">--请选择--</option>

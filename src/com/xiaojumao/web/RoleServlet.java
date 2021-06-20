@@ -40,9 +40,6 @@ public class RoleServlet extends HttpServlet {
         }else if(req.getRequestURI().endsWith("ChageState")){
             chageState(req, resp);
         }
-
-
-
     }
 
     /**
